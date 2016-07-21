@@ -23,6 +23,7 @@ const factory = (Chip, Input) => {
      label: PropTypes.string,
      multiple: PropTypes.bool,
      onChange: PropTypes.func,
+     onQueryChange: PropTypes.func,
      selectedPosition: PropTypes.oneOf(['above', 'below']),
      showSuggestionsWhenValueIsSet: PropTypes.bool,
      source: PropTypes.any,
@@ -93,6 +94,7 @@ const factory = (Chip, Input) => {
    };
 
    handleQueryChange = (value) => {
+     if (this.props.onQueryChange) this.props.onQueryChange(value);
      this.setState({query: value, showAllSuggestions: false});
    };
 
