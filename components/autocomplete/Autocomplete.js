@@ -63,7 +63,7 @@ const factory = (Chip, Input) => {
    componentWillReceiveProps (nextProps) {
      if (!this.props.multiple) {
        this.setState({
-         query: this.query(nextProps.value)
+         query: this.query(nextProps.value, nextProps.source)
        });
      }
    }
@@ -151,8 +151,8 @@ const factory = (Chip, Input) => {
      }
    }
 
-   query (key) {
-     return !this.props.multiple && key ? this.source().get(key) : '';
+   query (key, sourceOverride) {
+     return !this.props.multiple && key ? this.source(sourceOverride).get(key) : '';
    }
 
    suggestions () {
@@ -200,8 +200,8 @@ const factory = (Chip, Input) => {
      return false;
    }
 
-   source () {
-     const { source: src } = this.props;
+   source (sourceOverride) {
+     const src = sourceOverride ? sourceOverride : this.props.source;
      if (src.hasOwnProperty('length')) {
        return new Map(src.map((item) => Array.isArray(item) ? [...item] : [item, item]));
      } else {
