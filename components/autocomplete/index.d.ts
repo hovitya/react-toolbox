@@ -72,6 +72,11 @@ interface AutocompleteProps extends __ReactToolbox.Props {
    */
   onChange?: __React.FormEventHandler;
   /**
+   * Callback function that is fired when the components's value changes.
+   * @default auto
+   */
+  onQueryChange?: __React.FormEventHandler;
+  /**
    * Determines if the selected list is shown above or below input. It can be above or below.
    * @default above
    */
